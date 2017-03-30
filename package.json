@@ -1,13 +1,14 @@
 {
   "name": "micro-business-parse-server-backend",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Micro Business Parse Server Backend",
   "main": "./dist/index.js",
   "scripts": {
     "start": "babel-node src/index.js",
     "build": "babel src --out-dir dist",
     "lint": "eslint --ext .jsx --ext .js src",
-    "fixlint": "eslint --fix --ext .jsx --ext .js src"
+    "fixlint": "eslint --fix --ext .jsx --ext .js src",
+    "publish-package": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
