@@ -7,7 +7,6 @@
   "rules": {
     "indent": [2, 2],
     "linebreak-style": [0],
-    // eslint-plugin-import
     "import/no-unresolved": [2, {
       "commonjs": true
     }],
@@ -15,7 +14,6 @@
     "import/default": 2,
     "import/namespace": 2,
     "import/export": 2,
-    // Overide Stateless
     "react/prefer-stateless-function": 0,
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, 2],
