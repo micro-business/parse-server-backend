@@ -27,7 +27,7 @@ export default function (config) {
     }),
   );
 
-  if (config.startParseDashboar) {
+  if (config.startParseDashboard) {
     let users;
 
     if (config.parseDashboardAuthentication) {
