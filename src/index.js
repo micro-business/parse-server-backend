@@ -12,7 +12,7 @@ export default function (config) {
   const parseServerApplicationId = config.parseServerApplicationId || 'micro-business-parse-server-backend-app-id';
   const parseServerMasterKey = config.parseServerMasterKey || uuid();
   const parseServerFileKey = config.parseServerFileKey || uuid();
-  const parseServerDatabaseUri = config.parseServerDatabaseURI || 'mongodb://localhost:27017/dev';
+  const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
 
   const server = express();
 
