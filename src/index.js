@@ -13,6 +13,7 @@ export default function (config) {
   const parseServerMasterKey = config.parseServerMasterKey || uuid();
   const parseServerFileKey = config.parseServerFileKey || uuid();
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
+  const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
 
   const server = express();
 
@@ -46,7 +47,7 @@ export default function (config) {
           serverURL: '/parse',
           appId: parseServerApplicationId,
           masterKey: parseServerMasterKey,
-          appName: 'micro-business-parse-server-backend-app',
+          appName: parseServerDashboardApplicationName,
         }],
         users,
       }, true),
@@ -62,5 +63,6 @@ export default function (config) {
     parseServerMasterKey,
     parseServerFileKey,
     parseServerDatabaseUri,
+    parseServerDashboardApplicationName,
   };
 }
