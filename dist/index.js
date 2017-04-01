@@ -13,6 +13,7 @@ exports.default = function (config) {
   var parseServerApplicationId = config.parseServerApplicationId || 'micro-business-parse-server-backend-app-id';
   var parseServerMasterKey = config.parseServerMasterKey || (0, _v2.default)();
   var parseServerClientKey = config.parseServerClientKey || (0, _v2.default)();
+  var parseServerJavascriptKey = config.parseServerJavascriptKey || (0, _v2.default)();
   var parseServerFileKey = config.parseServerFileKey || (0, _v2.default)();
   var parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   var parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
@@ -24,6 +25,7 @@ exports.default = function (config) {
     appId: parseServerApplicationId,
     masterKey: parseServerMasterKey,
     clientKey: parseServerClientKey,
+    javascriptKey: parseServerJavascriptKey,
     fileKey: parseServerFileKey,
     serverURL: parseServerUrl
   }));
@@ -62,6 +64,7 @@ exports.default = function (config) {
     parseServerApplicationId: parseServerApplicationId,
     parseServerMasterKey: parseServerMasterKey,
     parseServerClientKey: parseServerClientKey,
+    parseServerJavascriptKey: parseServerJavascriptKey,
     parseServerFileKey: parseServerFileKey,
     parseServerDatabaseUri: parseServerDatabaseUri,
     parseServerDashboardApplicationName: parseServerDashboardApplicationName
