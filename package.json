@@ -1,6 +1,6 @@
 {
   "name": "micro-business-parse-server-backend",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Micro Business Parse Server Backend",
   "main": "./dist/index.js",
   "scripts": {
