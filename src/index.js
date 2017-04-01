@@ -11,6 +11,7 @@ export default function (config) {
   const parseServerUrl = `http://${serverHost}:${serverPort}/parse`;
   const parseServerApplicationId = config.parseServerApplicationId || 'micro-business-parse-server-backend-app-id';
   const parseServerMasterKey = config.parseServerMasterKey || uuid();
+  const parseServerClientKey = config.parseServerClientKey || uuid();
   const parseServerFileKey = config.parseServerFileKey || uuid();
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
@@ -23,6 +24,7 @@ export default function (config) {
       databaseURI: parseServerDatabaseUri,
       appId: parseServerApplicationId,
       masterKey: parseServerMasterKey,
+      clientKey: parseServerClientKey,
       fileKey: parseServerFileKey,
       serverURL: parseServerUrl,
     }),
@@ -61,6 +63,7 @@ export default function (config) {
     parseServerUrl,
     parseServerApplicationId,
     parseServerMasterKey,
+    parseServerClientKey,
     parseServerFileKey,
     parseServerDatabaseUri,
     parseServerDashboardApplicationName,
