@@ -29,6 +29,7 @@ export default function (config) {
       javascriptKey: parseServerJavascriptKey,
       fileKey: parseServerFileKey,
       serverURL: parseServerUrl,
+      cloud: config.parseServerCloudFilePath,
     }),
   );
 
