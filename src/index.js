@@ -21,7 +21,6 @@ export default function (config) {
   Parse.initialize(parseServerApplicationId);
   Parse.serverURL = parseServerUrl;
   Parse.masterKey = parseServerMasterKey;
-  Parse.Cloud.useMasterKey();
 
   const server = express();
 

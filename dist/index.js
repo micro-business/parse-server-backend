@@ -21,7 +21,6 @@ exports.default = function (config) {
   _node2.default.initialize(parseServerApplicationId);
   _node2.default.serverURL = parseServerUrl;
   _node2.default.masterKey = parseServerMasterKey;
-  _node2.default.Cloud.useMasterKey();
 
   var server = (0, _express2.default)();
 
