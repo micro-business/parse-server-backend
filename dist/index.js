@@ -18,10 +18,6 @@ exports.default = function (config) {
   var parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   var parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
 
-  _node2.default.initialize(parseServerApplicationId);
-  _node2.default.serverURL = parseServerUrl;
-  _node2.default.masterKey = parseServerMasterKey;
-
   var server = (0, _express2.default)();
 
   server.use('/parse', new _parseServer.ParseServer({
@@ -32,7 +28,8 @@ exports.default = function (config) {
     javascriptKey: parseServerJavascriptKey,
     fileKey: parseServerFileKey,
     serverURL: parseServerUrl,
-    cloud: config.parseServerCloudFilePath
+    cloud: config.parseServerCloudFilePath,
+    verifyUserEmails: true
   }));
 
   if (config.startParseDashboard) {
@@ -89,9 +86,5 @@ var _parseDashboard2 = _interopRequireDefault(_parseDashboard);
 var _v = require('uuid/v4');
 
 var _v2 = _interopRequireDefault(_v);
-
-var _node = require('parse/node');
-
-var _node2 = _interopRequireDefault(_node);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }

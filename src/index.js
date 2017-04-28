@@ -4,7 +4,6 @@ import {
 } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import uuid from 'uuid/v4';
-import Parse from 'parse/node';
 
 export default function (config) {
   const serverHost = config.serverHost || 'localhost';
@@ -17,10 +16,6 @@ export default function (config) {
   const parseServerFileKey = config.parseServerFileKey || uuid();
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
-
-  Parse.initialize(parseServerApplicationId);
-  Parse.serverURL = parseServerUrl;
-  Parse.masterKey = parseServerMasterKey;
 
   const server = express();
 
@@ -35,6 +30,7 @@ export default function (config) {
       fileKey: parseServerFileKey,
       serverURL: parseServerUrl,
       cloud: config.parseServerCloudFilePath,
+      verifyUserEmails: true,
     }),
   );
 
