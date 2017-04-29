@@ -30,7 +30,6 @@ export default function (config) {
       fileKey: parseServerFileKey,
       serverURL: parseServerUrl,
       cloud: config.parseServerCloudFilePath,
-      verifyUserEmails: true,
     }),
   );
 

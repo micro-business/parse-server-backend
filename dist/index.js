@@ -28,8 +28,7 @@ exports.default = function (config) {
     javascriptKey: parseServerJavascriptKey,
     fileKey: parseServerFileKey,
     serverURL: parseServerUrl,
-    cloud: config.parseServerCloudFilePath,
-    verifyUserEmails: true
+    cloud: config.parseServerCloudFilePath
   }));
 
   if (config.startParseDashboard) {
