@@ -1,6 +1,6 @@
 {
   "name": "micro-business-parse-server-backend",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Micro Business Parse Server Backend",
   "main": "./dist/index.js",
   "scripts": {
@@ -23,6 +23,7 @@
   "homepage": "https://bitbucket.org/microbusiness/micro-business-parse-server-backend#readme",
   "dependencies": {
     "express": "^4.15.2",
+    "immutable": "^3.8.1",
     "parse-dashboard": "^1.0.25",
     "parse-server": "^2.3.8",
     "uuid": "^3.0.1"
@@ -32,11 +33,12 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "^7.0.0",
     "flow-bin": "^0.45.0",
     "jest": "^19.0.2"
   },

@@ -1,3 +1,6 @@
+import {
+  Map,
+} from 'immutable';
 import express from 'express';
 import {
   ParseServer,
@@ -5,7 +8,7 @@ import {
 import ParseDashboard from 'parse-dashboard';
 import uuid from 'uuid/v4';
 
-export default function (config) {
+export default (config) => {
   const serverHost = config.serverHost || 'localhost';
   const serverPort = config.serverPort || 8080;
   const parseServerUrl = `http://${serverHost}:${serverPort}/parse`;
@@ -59,7 +62,7 @@ export default function (config) {
     );
   }
 
-  return {
+  return Map({
     server,
     serverHost,
     serverPort,
@@ -71,5 +74,5 @@ export default function (config) {
     parseServerFileKey,
     parseServerDatabaseUri,
     parseServerDashboardApplicationName,
-  };
-}
+  });
+};
