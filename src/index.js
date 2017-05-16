@@ -1,14 +1,12 @@
-import {
-  Map,
-} from 'immutable';
+// @flow
+
+import { Map } from 'immutable';
 import express from 'express';
-import {
-  ParseServer,
-} from 'parse-server';
+import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import uuid from 'uuid/v4';
 
-export default (config) => {
+export default config => {
   const serverHost = config.serverHost || 'localhost';
   const serverPort = config.serverPort || 8080;
   const parseServerUrl = `http://${serverHost}:${serverPort}/parse`;
@@ -42,23 +40,30 @@ export default (config) => {
     if (config.parseDashboardAuthentication) {
       const [user, pass] = config.parseDashboardAuthentication.split(':');
 
-      users = [{
-        user,
-        pass,
-      }];
+      users = [
+        {
+          user,
+          pass,
+        },
+      ];
     }
 
     server.use(
       '/dashboard',
-      ParseDashboard({
-        apps: [{
-          serverURL: '/parse',
-          appId: parseServerApplicationId,
-          masterKey: parseServerMasterKey,
-          appName: parseServerDashboardApplicationName,
-        }],
-        users,
-      }, true),
+      ParseDashboard(
+        {
+          apps: [
+            {
+              serverURL: '/parse',
+              appId: parseServerApplicationId,
+              masterKey: parseServerMasterKey,
+              appName: parseServerDashboardApplicationName,
+            },
+          ],
+          users,
+        },
+        true,
+      ),
     );
   }
 
