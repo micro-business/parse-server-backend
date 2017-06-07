@@ -6,7 +6,7 @@ import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import uuid from 'uuid/v4';
 
-export default config => {
+export default (config) => {
   const serverHost = config.serverHost || 'localhost';
   const serverPort = config.serverPort || 8080;
   const parseServerUrl = `http://${serverHost}:${serverPort}/parse`;
