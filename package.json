@@ -1,6 +1,6 @@
 {
   "name": "micro-business-parse-server-backend",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "description": "Micro Business Parse Server Backend",
   "main": "./dist/index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "immutable": "^3.8.1",
     "parse-dashboard": "^1.0.28",
     "parse-server": "^2.4.2",
-    "uuid": "^3.0.1"
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -38,9 +38,9 @@
     "eslint-plugin-react": "^7.1.0",
     "flow-bin": "^0.48.0",
     "jest": "^20.0.4",
-    "lint-staged": "^3.6.1",
+    "lint-staged": "^4.0.0",
     "prettier": "^1.4.4",
-    "uuid": "^3.0.1"
+    "uuid": "^3.1.0"
   },
   "jest": {
     "rootDir": "./src"
