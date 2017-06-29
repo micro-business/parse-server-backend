@@ -22,7 +22,7 @@
     "express": "^4.15.3",
     "immutable": "^3.8.1",
     "parse-dashboard": "^1.0.28",
-    "parse-server": "^2.4.2",
+    "parse-server": "^2.5.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
@@ -36,10 +36,10 @@
     "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
     "eslint-plugin-react": "^7.1.0",
-    "flow-bin": "^0.48.0",
+    "flow-bin": "^0.49.1",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.0",
-    "prettier": "^1.4.4",
+    "prettier": "^1.5.2",
     "uuid": "^3.1.0"
   },
   "jest": {
