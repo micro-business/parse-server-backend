@@ -19,10 +19,6 @@ export default (config) => {
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
 
-  Parse.initialize(parseServerApplicationId);
-  Parse.serverURL = parseServerUrl;
-  Parse.masterKey = parseServerMasterKey;
-
   const server = express();
 
   server.use(
