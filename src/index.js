@@ -5,7 +5,6 @@ import express from 'express';
 import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import uuid from 'uuid/v4';
-import Parse from 'parse/node';
 
 export default (config) => {
   const serverHost = config.serverHost || 'localhost';
