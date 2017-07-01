@@ -22,10 +22,6 @@ var _v = require('uuid/v4');
 
 var _v2 = _interopRequireDefault(_v);
 
-var _node = require('parse/node');
-
-var _node2 = _interopRequireDefault(_node);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (config) {
