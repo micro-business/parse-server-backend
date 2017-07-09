@@ -4,6 +4,7 @@ import { Map } from 'immutable';
 import express from 'express';
 import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
+import Parse from 'parse/node';
 import uuid from 'uuid/v4';
 
 export default (config) => {
@@ -17,6 +18,7 @@ export default (config) => {
   const parseServerFileKey = config.parseServerFileKey || uuid();
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
+  const initializeParseSdk = config.initializeParseSdk || false;
 
   const server = express();
 
@@ -65,6 +67,11 @@ export default (config) => {
         true,
       ),
     );
+  }
+
+  if (initializeParseSdk) {
+    Parse.initialize(parseServerApplicationId, parseServerJavascriptKey || 'unused', parseServerMasterKey);
+    Parse.serverURL = parseServerUrl;
   }
 
   return Map({
