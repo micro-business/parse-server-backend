@@ -104,6 +104,11 @@ exports.default = function (config) {
     parseServerJavascriptKey: parseServerJavascriptKey,
     parseServerFileKey: parseServerFileKey,
     parseServerDatabaseUri: parseServerDatabaseUri,
-    parseServerDashboardApplicationName: parseServerDashboardApplicationName
+    parseServerDashboardApplicationName: parseServerDashboardApplicationName,
+    parseServerCloudFilePath: config.parseServerCloudFilePath,
+    parseServerEnableAnonymousUsers: parseServerEnableAnonymousUsers,
+    parseServerSessionLength: parseServerSessionLength,
+    parseServerLogLevel: parseServerLogLevel,
+    parseServerAllowClientClassCreation: parseServerAllowClientClassCreation
   });
 };

@@ -94,5 +94,10 @@ export default (config) => {
     parseServerFileKey,
     parseServerDatabaseUri,
     parseServerDashboardApplicationName,
+    parseServerCloudFilePath: config.parseServerCloudFilePath,
+    parseServerEnableAnonymousUsers,
+    parseServerSessionLength,
+    parseServerLogLevel,
+    parseServerAllowClientClassCreation,
   });
 };
