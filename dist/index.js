@@ -42,6 +42,7 @@ exports.default = function (config) {
   var parseServerAllowClientClassCreation = config.parseServerAllowClientClassCreation || false;
   var parseServerLogLevel = config.parseServerLogLevel || 'info';
   var parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
+  var parseServerEnableAnonymousUsers = config.parseServerEnableAnonymousUsers || false;
   var initializeParseSdk = config.initializeParseSdk || false;
 
   var server = (0, _express2.default)();
@@ -57,7 +58,8 @@ exports.default = function (config) {
     cloud: config.parseServerCloudFilePath,
     allowClientClassCreation: parseServerAllowClientClassCreation,
     logLevel: parseServerLogLevel,
-    sessionLength: parseServerSessionLength
+    sessionLength: parseServerSessionLength,
+    enableAnonymousUsers: parseServerEnableAnonymousUsers
   }));
 
   if (config.startParseDashboard) {

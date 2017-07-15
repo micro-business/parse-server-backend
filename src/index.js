@@ -21,6 +21,7 @@ export default (config) => {
   const parseServerAllowClientClassCreation = config.parseServerAllowClientClassCreation || false;
   const parseServerLogLevel = config.parseServerLogLevel || 'info';
   const parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
+  const parseServerEnableAnonymousUsers = config.parseServerEnableAnonymousUsers || false;
   const initializeParseSdk = config.initializeParseSdk || false;
 
   const server = express();
@@ -39,6 +40,7 @@ export default (config) => {
       allowClientClassCreation: parseServerAllowClientClassCreation,
       logLevel: parseServerLogLevel,
       sessionLength: parseServerSessionLength,
+      enableAnonymousUsers: parseServerEnableAnonymousUsers,
     }),
   );
 
