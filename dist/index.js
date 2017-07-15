@@ -39,6 +39,9 @@ exports.default = function (config) {
   var parseServerFileKey = config.parseServerFileKey || (0, _v2.default)();
   var parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   var parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
+  var parseServerAllowClientClassCreation = config.parseServerAllowClientClassCreation || false;
+  var parseServerLogLevel = config.parseServerLogLevel || 'info';
+  var parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
   var initializeParseSdk = config.initializeParseSdk || false;
 
   var server = (0, _express2.default)();
@@ -51,7 +54,10 @@ exports.default = function (config) {
     javascriptKey: parseServerJavascriptKey,
     fileKey: parseServerFileKey,
     serverURL: parseServerUrl,
-    cloud: config.parseServerCloudFilePath
+    cloud: config.parseServerCloudFilePath,
+    allowClientClassCreation: parseServerAllowClientClassCreation,
+    logLevel: parseServerLogLevel,
+    sessionLength: parseServerSessionLength
   }));
 
   if (config.startParseDashboard) {

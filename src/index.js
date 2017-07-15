@@ -18,6 +18,9 @@ export default (config) => {
   const parseServerFileKey = config.parseServerFileKey || uuid();
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
+  const parseServerAllowClientClassCreation = config.parseServerAllowClientClassCreation || false;
+  const parseServerLogLevel = config.parseServerLogLevel || 'info';
+  const parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
   const initializeParseSdk = config.initializeParseSdk || false;
 
   const server = express();
@@ -33,6 +36,9 @@ export default (config) => {
       fileKey: parseServerFileKey,
       serverURL: parseServerUrl,
       cloud: config.parseServerCloudFilePath,
+      allowClientClassCreation: parseServerAllowClientClassCreation,
+      logLevel: parseServerLogLevel,
+      sessionLength: parseServerSessionLength,
     }),
   );
 
