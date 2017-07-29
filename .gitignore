@@ -54,5 +54,6 @@ fastlane/screenshots
 
 .exponent
 package-lock.json
-
+yarn.lock
+./dist
 
