@@ -8,6 +8,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _immutable = require('immutable');
 
+var _immutable2 = _interopRequireDefault(_immutable);
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -44,10 +46,7 @@ exports.default = function (config) {
   var parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
   var parseServerEnableAnonymousUsers = config.parseServerEnableAnonymousUsers || false;
   var initializeParseSdk = config.initializeParseSdk || false;
-
-  var server = (0, _express2.default)();
-
-  server.use('/parse', new _parseServer.ParseServer({
+  var parseServerConfig = (0, _immutable.Map)({
     databaseURI: parseServerDatabaseUri,
     appId: parseServerApplicationId,
     masterKey: parseServerMasterKey,
@@ -59,11 +58,11 @@ exports.default = function (config) {
     allowClientClassCreation: parseServerAllowClientClassCreation,
     logLevel: parseServerLogLevel,
     sessionLength: parseServerSessionLength,
-    enableAnonymousUsers: parseServerEnableAnonymousUsers,
-    oauth: {
-      facebook: { appIds: config.facebookAppId }
-    }
-  }));
+    enableAnonymousUsers: parseServerEnableAnonymousUsers
+  }).merge(config.facebookAppIds ? (0, _immutable.Map)({ oauth: (0, _immutable.Map)({ facebook: (0, _immutable.Map)({ appIds: _immutable2.default.fromJS(config.facebookAppIds.split(',')) }) }) }) : (0, _immutable.Map)());
+  var server = (0, _express2.default)();
+
+  server.use('/parse', new _parseServer.ParseServer(parseServerConfig.toJS()));
 
   if (config.startParseDashboard) {
     var users = void 0;
@@ -101,18 +100,7 @@ exports.default = function (config) {
     serverHost: serverHost,
     serverPort: serverPort,
     parseServerUrl: parseServerUrl,
-    parseServerApplicationId: parseServerApplicationId,
-    parseServerMasterKey: parseServerMasterKey,
-    parseServerClientKey: parseServerClientKey,
-    parseServerJavascriptKey: parseServerJavascriptKey,
-    parseServerFileKey: parseServerFileKey,
-    parseServerDatabaseUri: parseServerDatabaseUri,
     parseServerDashboardApplicationName: parseServerDashboardApplicationName,
-    parseServerCloudFilePath: config.parseServerCloudFilePath,
-    parseServerEnableAnonymousUsers: parseServerEnableAnonymousUsers,
-    parseServerSessionLength: parseServerSessionLength,
-    parseServerLogLevel: parseServerLogLevel,
-    parseServerAllowClientClassCreation: parseServerAllowClientClassCreation,
-    facebookAppId: config.facebookAppId
+    parseServerConfig: parseServerConfig
   });
 };

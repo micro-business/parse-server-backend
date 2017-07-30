@@ -1,6 +1,6 @@
 // @flow
 
-import { Map } from 'immutable';
+import Immutable, { Map } from 'immutable';
 import express from 'express';
 import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
@@ -23,29 +23,23 @@ export default (config) => {
   const parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
   const parseServerEnableAnonymousUsers = config.parseServerEnableAnonymousUsers || false;
   const initializeParseSdk = config.initializeParseSdk || false;
-
+  const parseServerConfig = Map({
+    databaseURI: parseServerDatabaseUri,
+    appId: parseServerApplicationId,
+    masterKey: parseServerMasterKey,
+    clientKey: parseServerClientKey,
+    javascriptKey: parseServerJavascriptKey,
+    fileKey: parseServerFileKey,
+    serverURL: parseServerUrl,
+    cloud: config.parseServerCloudFilePath,
+    allowClientClassCreation: parseServerAllowClientClassCreation,
+    logLevel: parseServerLogLevel,
+    sessionLength: parseServerSessionLength,
+    enableAnonymousUsers: parseServerEnableAnonymousUsers,
+  }).merge(config.facebookAppIds ? Map({ oauth: Map({ facebook: Map({ appIds: Immutable.fromJS(config.facebookAppIds.split(',')) }) }) }) : Map());
   const server = express();
 
-  server.use(
-    '/parse',
-    new ParseServer({
-      databaseURI: parseServerDatabaseUri,
-      appId: parseServerApplicationId,
-      masterKey: parseServerMasterKey,
-      clientKey: parseServerClientKey,
-      javascriptKey: parseServerJavascriptKey,
-      fileKey: parseServerFileKey,
-      serverURL: parseServerUrl,
-      cloud: config.parseServerCloudFilePath,
-      allowClientClassCreation: parseServerAllowClientClassCreation,
-      logLevel: parseServerLogLevel,
-      sessionLength: parseServerSessionLength,
-      enableAnonymousUsers: parseServerEnableAnonymousUsers,
-      oauth: {
-        facebook: { appIds: config.facebookAppId },
-      },
-    }),
-  );
+  server.use('/parse', new ParseServer(parseServerConfig.toJS()));
 
   if (config.startParseDashboard) {
     let users;
@@ -90,18 +84,7 @@ export default (config) => {
     serverHost,
     serverPort,
     parseServerUrl,
-    parseServerApplicationId,
-    parseServerMasterKey,
-    parseServerClientKey,
-    parseServerJavascriptKey,
-    parseServerFileKey,
-    parseServerDatabaseUri,
     parseServerDashboardApplicationName,
-    parseServerCloudFilePath: config.parseServerCloudFilePath,
-    parseServerEnableAnonymousUsers,
-    parseServerSessionLength,
-    parseServerLogLevel,
-    parseServerAllowClientClassCreation,
-    facebookAppId: config.facebookAppId,
+    parseServerConfig,
   });
 };
