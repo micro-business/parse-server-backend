@@ -59,7 +59,10 @@ exports.default = function (config) {
     allowClientClassCreation: parseServerAllowClientClassCreation,
     logLevel: parseServerLogLevel,
     sessionLength: parseServerSessionLength,
-    enableAnonymousUsers: parseServerEnableAnonymousUsers
+    enableAnonymousUsers: parseServerEnableAnonymousUsers,
+    oauth: {
+      facebook: { appIds: config.facebookAppId }
+    }
   }));
 
   if (config.startParseDashboard) {
@@ -109,6 +112,7 @@ exports.default = function (config) {
     parseServerEnableAnonymousUsers: parseServerEnableAnonymousUsers,
     parseServerSessionLength: parseServerSessionLength,
     parseServerLogLevel: parseServerLogLevel,
-    parseServerAllowClientClassCreation: parseServerAllowClientClassCreation
+    parseServerAllowClientClassCreation: parseServerAllowClientClassCreation,
+    facebookAppId: config.facebookAppId
   });
 };

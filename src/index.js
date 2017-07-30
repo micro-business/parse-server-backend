@@ -41,6 +41,9 @@ export default (config) => {
       logLevel: parseServerLogLevel,
       sessionLength: parseServerSessionLength,
       enableAnonymousUsers: parseServerEnableAnonymousUsers,
+      oauth: {
+        facebook: { appIds: config.facebookAppId },
+      },
     }),
   );
 
@@ -99,5 +102,6 @@ export default (config) => {
     parseServerSessionLength,
     parseServerLogLevel,
     parseServerAllowClientClassCreation,
+    facebookAppId: config.facebookAppId,
   });
 };
