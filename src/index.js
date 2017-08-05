@@ -36,7 +36,13 @@ export default (config) => {
     logLevel: parseServerLogLevel,
     sessionLength: parseServerSessionLength,
     enableAnonymousUsers: parseServerEnableAnonymousUsers,
-  }).merge(config.facebookAppIds ? Map({ oauth: Map({ facebook: Map({ appIds: Immutable.fromJS(config.facebookAppIds.split(',')) }) }) }) : Map());
+  })
+    .merge(config.facebookAppIds ? Map({ oauth: Map({ facebook: Map({ appIds: Immutable.fromJS(config.facebookAppIds.split(',')) }) }) }) : Map())
+    .merge(
+      config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey
+        ? Map({ push: { android: Map({ senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey }) } })
+        : Map(),
+    );
   const server = express();
 
   server.use('/parse', new ParseServer(parseServerConfig.toJS()));
