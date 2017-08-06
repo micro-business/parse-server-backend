@@ -59,7 +59,7 @@ exports.default = function (config) {
     logLevel: parseServerLogLevel,
     sessionLength: parseServerSessionLength,
     enableAnonymousUsers: parseServerEnableAnonymousUsers
-  }).merge(config.facebookAppIds ? (0, _immutable.Map)({ oauth: (0, _immutable.Map)({ facebook: (0, _immutable.Map)({ appIds: _immutable2.default.fromJS(config.facebookAppIds.split(',')) }) }) }) : (0, _immutable.Map)()).merge(config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey ? (0, _immutable.Map)({ push: { android: (0, _immutable.Map)({ senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey }) } }) : (0, _immutable.Map)());
+  }).merge(config.facebookAppIds ? (0, _immutable.Map)({ oauth: (0, _immutable.Map)({ facebook: (0, _immutable.Map)({ appIds: _immutable2.default.fromJS(config.facebookAppIds.split(',')) }) }) }) : (0, _immutable.Map)()).merge(config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey ? (0, _immutable.Map)({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } }) : (0, _immutable.Map)());
   var server = (0, _express2.default)();
 
   server.use('/parse', new _parseServer.ParseServer(parseServerConfig.toJS()));

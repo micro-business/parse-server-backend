@@ -40,7 +40,7 @@ export default (config) => {
     .merge(config.facebookAppIds ? Map({ oauth: Map({ facebook: Map({ appIds: Immutable.fromJS(config.facebookAppIds.split(',')) }) }) }) : Map())
     .merge(
       config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey
-        ? Map({ push: { android: Map({ senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey }) } })
+        ? Map({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } })
         : Map(),
     );
   const server = express();
