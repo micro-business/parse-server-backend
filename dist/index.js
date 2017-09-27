@@ -10,10 +10,6 @@ var _immutable = require('immutable');
 
 var _immutable2 = _interopRequireDefault(_immutable);
 
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
-
 var _parseServer = require('parse-server');
 
 var _parseDashboard = require('parse-dashboard');
@@ -60,9 +56,9 @@ exports.default = function (config) {
     sessionLength: parseServerSessionLength,
     enableAnonymousUsers: parseServerEnableAnonymousUsers
   }).merge(config.facebookAppIds ? (0, _immutable.Map)({ oauth: (0, _immutable.Map)({ facebook: (0, _immutable.Map)({ appIds: _immutable2.default.fromJS(config.facebookAppIds.split(',')) }) }) }) : (0, _immutable.Map)()).merge(config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey ? (0, _immutable.Map)({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } }) : (0, _immutable.Map)());
-  var server = (0, _express2.default)();
 
-  server.use('/parse', new _parseServer.ParseServer(parseServerConfig.toJS()));
+  var parseServer = new _parseServer.ParseServer(parseServerConfig.toJS());
+  var parseDashboard = void 0;
 
   if (config.startParseDashboard) {
     var users = void 0;
@@ -73,21 +69,13 @@ exports.default = function (config) {
           user = _config$parseDashboar2[0],
           pass = _config$parseDashboar2[1];
 
-      users = [{
-        user: user,
-        pass: pass
-      }];
+      users = [{ user: user, pass: pass }];
     }
 
-    server.use('/dashboard', (0, _parseDashboard2.default)({
-      apps: [{
-        serverURL: '/parse',
-        appId: parseServerApplicationId,
-        masterKey: parseServerMasterKey,
-        appName: parseServerDashboardApplicationName
-      }],
+    parseDashboard = (0, _parseDashboard2.default)({
+      apps: [{ serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName }],
       users: users
-    }, true));
+    }, true);
   }
 
   if (initializeParseSdk) {
@@ -96,11 +84,14 @@ exports.default = function (config) {
   }
 
   return (0, _immutable.Map)({
-    server: server,
-    serverHost: serverHost,
-    serverPort: serverPort,
-    parseServerUrl: parseServerUrl,
-    parseServerDashboardApplicationName: parseServerDashboardApplicationName,
-    parseServerConfig: parseServerConfig
+    parseServer: parseServer,
+    parseDashboard: parseDashboard,
+    config: (0, _immutable.Map)({
+      serverHost: serverHost,
+      serverPort: serverPort,
+      parseServerUrl: parseServerUrl,
+      parseServerDashboardApplicationName: parseServerDashboardApplicationName,
+      parseServerConfig: parseServerConfig
+    })
   });
 };

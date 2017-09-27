@@ -1,7 +1,6 @@
 // @flow
 
 import Immutable, { Map } from 'immutable';
-import express from 'express';
 import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import Parse from 'parse/node';
@@ -43,9 +42,9 @@ export default (config) => {
         ? Map({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } })
         : Map(),
     );
-  const server = express();
 
-  server.use('/parse', new ParseServer(parseServerConfig.toJS()));
+  const parseServer = new ParseServer(parseServerConfig.toJS());
+  let parseDashboard;
 
   if (config.startParseDashboard) {
     let users;
@@ -53,30 +52,17 @@ export default (config) => {
     if (config.parseDashboardAuthentication) {
       const [user, pass] = config.parseDashboardAuthentication.split(':');
 
-      users = [
-        {
-          user,
-          pass,
-        },
-      ];
+      users = [{ user, pass }];
     }
 
-    server.use(
-      '/dashboard',
-      ParseDashboard(
-        {
-          apps: [
-            {
-              serverURL: '/parse',
-              appId: parseServerApplicationId,
-              masterKey: parseServerMasterKey,
-              appName: parseServerDashboardApplicationName,
-            },
-          ],
-          users,
-        },
-        true,
-      ),
+    parseDashboard = ParseDashboard(
+      {
+        apps: [
+          { serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName },
+        ],
+        users,
+      },
+      true,
     );
   }
 
@@ -86,11 +72,14 @@ export default (config) => {
   }
 
   return Map({
-    server,
-    serverHost,
-    serverPort,
-    parseServerUrl,
-    parseServerDashboardApplicationName,
-    parseServerConfig,
+    parseServer,
+    parseDashboard,
+    config: Map({
+      serverHost,
+      serverPort,
+      parseServerUrl,
+      parseServerDashboardApplicationName,
+      parseServerConfig,
+    }),
   });
 };
