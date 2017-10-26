@@ -37,11 +37,9 @@ export default (config) => {
     enableAnonymousUsers: parseServerEnableAnonymousUsers,
   })
     .merge(config.facebookAppIds ? Map({ oauth: Map({ facebook: Map({ appIds: Immutable.fromJS(config.facebookAppIds.split(',')) }) }) }) : Map())
-    .merge(
-      config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey
-        ? Map({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } })
-        : Map(),
-    );
+    .merge(config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey
+      ? Map({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } })
+      : Map());
 
   const parseServer = new ParseServer(parseServerConfig.toJS());
   let parseDashboard;
@@ -58,7 +56,9 @@ export default (config) => {
     parseDashboard = ParseDashboard(
       {
         apps: [
-          { serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName },
+          {
+            serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName,
+          },
         ],
         users,
       },

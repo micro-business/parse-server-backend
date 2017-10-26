@@ -1,6 +1,6 @@
 {
   "name": "micro-business-parse-server-backend",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "Micro Business Parse Server Backend",
   "main": "./dist/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "immutable": "^4.0.0-rc.9",
     "parse-dashboard": "^1.1.0",
-    "parse-server": "2.6.3",
+    "parse-server": "2.6.4",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
