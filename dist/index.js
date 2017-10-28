@@ -73,7 +73,9 @@ exports.default = function (config) {
     }
 
     parseDashboard = (0, _parseDashboard2.default)({
-      apps: [{ serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName }],
+      apps: [{
+        serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName
+      }],
       users: users
     }, true);
   }
