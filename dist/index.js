@@ -37,6 +37,7 @@ exports.default = function (config) {
   var parseServerFileKey = config.parseServerFileKey || (0, _v2.default)();
   var parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   var parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
+  var parseServerDashboardAllowInsecureHTTP = config.parseServerDashboardAllowInsecureHTTP || false;
   var parseServerAllowClientClassCreation = config.parseServerAllowClientClassCreation || false;
   var parseServerLogLevel = config.parseServerLogLevel || 'info';
   var parseServerSessionLength = config.parseServerSessionLength || 31536000; // 1 Year - The default parse-server configuration value
@@ -74,10 +75,15 @@ exports.default = function (config) {
 
     parseDashboard = (0, _parseDashboard2.default)({
       apps: [{
-        serverURL: '/parse', appId: parseServerApplicationId, masterKey: parseServerMasterKey, appName: parseServerDashboardApplicationName
+        serverURL: '/parse',
+        appId: parseServerApplicationId,
+        masterKey: parseServerMasterKey,
+        appName: parseServerDashboardApplicationName
       }],
       users: users
-    }, true);
+    }, {
+      allowInsecureHTTP: parseServerDashboardAllowInsecureHTTP
+    });
   }
 
   if (initializeParseSdk) {
@@ -93,6 +99,7 @@ exports.default = function (config) {
       serverPort: serverPort,
       parseServerUrl: parseServerUrl,
       parseServerDashboardApplicationName: parseServerDashboardApplicationName,
+      parseServerDashboardAllowInsecureHTTP: parseServerDashboardAllowInsecureHTTP,
       parseServerConfig: parseServerConfig
     })
   });
