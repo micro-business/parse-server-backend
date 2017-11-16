@@ -3,10 +3,10 @@
 import Immutable, { Map } from 'immutable';
 import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
-import Parse from 'parse/node';
+import Parse from 'parse/node'; // eslint-disable-line import/no-extraneous-dependencies
 import uuid from 'uuid/v4';
 
-export default (config) => {
+export default config => {
   const serverHost = config.serverHost || 'localhost';
   const serverPort = config.serverPort || 8080;
   const parseServerUrl = `http://${serverHost}:${serverPort}/parse`;
@@ -38,9 +38,11 @@ export default (config) => {
     enableAnonymousUsers: parseServerEnableAnonymousUsers,
   })
     .merge(config.facebookAppIds ? Map({ oauth: Map({ facebook: Map({ appIds: Immutable.fromJS(config.facebookAppIds.split(',')) }) }) }) : Map())
-    .merge(config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey
-      ? Map({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } })
-      : Map());
+    .merge(
+      config.androidCloudMessagingSenderId && config.androidCloudMessagingServerKey
+        ? Map({ push: { android: { senderId: config.androidCloudMessagingSenderId, apiKey: config.androidCloudMessagingServerKey } } })
+        : Map(),
+    );
 
   const parseServer = new ParseServer(parseServerConfig.toJS());
   let parseDashboard;
