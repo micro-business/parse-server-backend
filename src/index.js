@@ -1,20 +1,20 @@
 // @flow
 
+import cuid from 'cuid';
 import Immutable, { Map } from 'immutable';
 import { ParseServer } from 'parse-server';
 import ParseDashboard from 'parse-dashboard';
 import Parse from 'parse/node'; // eslint-disable-line import/no-extraneous-dependencies
-import uuid from 'uuid/v4';
 
 export default config => {
   const serverHost = config.serverHost || 'localhost';
   const serverPort = config.serverPort || 8080;
   const parseServerUrl = `http://${serverHost}:${serverPort}/parse`;
   const parseServerApplicationId = config.parseServerApplicationId || 'micro-business-parse-server-backend-app-id';
-  const parseServerMasterKey = config.parseServerMasterKey || uuid();
-  const parseServerClientKey = config.parseServerClientKey || uuid();
-  const parseServerJavascriptKey = config.parseServerJavascriptKey || uuid();
-  const parseServerFileKey = config.parseServerFileKey || uuid();
+  const parseServerMasterKey = config.parseServerMasterKey || cuid();
+  const parseServerClientKey = config.parseServerClientKey || cuid();
+  const parseServerJavascriptKey = config.parseServerJavascriptKey || cuid();
+  const parseServerFileKey = config.parseServerFileKey || cuid();
   const parseServerDatabaseUri = config.parseServerDatabaseUri || 'mongodb://localhost:27017/dev';
   const parseServerDashboardApplicationName = config.parseServerDashboardApplicationName || 'micro-business-parse-server-backend-app';
   const parseServerDashboardAllowInsecureHTTP = config.parseServerDashboardAllowInsecureHTTP || false;
